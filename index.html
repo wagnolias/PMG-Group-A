@@ -210,13 +210,14 @@
   .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   @media (max-width:860px){ .loc-grid{grid-template-columns:1fr;} }
   .loc-card{
+    display:flex;flex-direction:column;
     border:1px solid var(--surface-border);background:var(--surface);border-radius:20px;padding:26px;
   }
   .loc-card .city{font-size:1.2rem;font-weight:700;}
   .loc-card .state{color:var(--text-muted);font-family:'IBM Plex Mono',monospace;font-size:0.78rem;}
   .loc-card .fn{margin-top:14px;font-size:0.88rem;color:var(--text-muted);line-height:1.55;}
   .loc-card .since{
-    margin-top:16px;display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+    margin-top:auto;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
     padding:5px 10px;border-radius:100px;border:1px solid var(--surface-border);color:var(--text-muted);
   }
 
