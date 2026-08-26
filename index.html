@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>PMG Group</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PMG Group — ecossistema especializado em tecnologia e engenharia para impressão flexográfica: PMG Flexo, PMG Narrow, VP Filmes e Tizza Tecnologia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050b16;
+    --bg-2:#0a1730;
+    --surface:rgba(255,255,255,0.03);
+    --surface-border:rgba(255,255,255,0.10);
+    --text:#F2F4F8;
+    --text-muted:#9AA7BD;
+    --line:rgba(255,255,255,0.10);
+
+    --c-flexo:#ED2F59;
+    --c-narrow:#2E6BFF;
+    --c-tizza:#22D3EE;
+    --c-vp:#22C58B;
+    --c-group:#F2F4F8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Poppins',system-ui,sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-weight:700;margin:0;letter-spacing:-0.01em;}
+  p{margin:0;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;text-decoration:none;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  section{padding:96px 0;position:relative;}
+  .block-tight{padding:56px 0;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(5,11,22,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:0 24px;
+    height:72px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:26px;width:auto;display:block;}
+  nav.links{display:flex;gap:28px;}
+  nav.links a{
+    font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;
+    color:var(--text-muted);transition:color .2s;
+  }
+  nav.links a:hover{color:var(--text);}
+  @media (max-width:860px){ nav.links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:200px 0 120px;
+    background:
+      radial-gradient(60% 50% at 15% 0%, rgba(237,47,89,0.16), transparent 60%),
+      radial-gradient(50% 40% at 90% 10%, rgba(34,197,238,0.14), transparent 60%),
+      var(--bg);
+    overflow:hidden;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,5.5vw,4.4rem);
+    line-height:1.05;
+    max-width:14ch;
+    margin-bottom:28px;
+  }
+  .hero h1 em{font-style:normal;color:var(--c-flexo);}
+  .hero .lede{
+    font-size:clamp(1.05rem,1.6vw,1.25rem);
+    color:var(--text-muted);
+    max-width:56ch;
+    line-height:1.6;
+    margin-bottom:48px;
+  }
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:820px;}
+  .stat-row .stat .num{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--text);}
+  .stat-row .stat .lbl{font-size:0.78rem;color:var(--text-muted);margin-top:4px;line-height:1.4;}
+  @media (max-width:700px){ .stat-row{grid-template-columns:repeat(2,1fr);row-gap:32px;} }
+
+  /* ---------- Sobre ---------- */
+  .sobre-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:start;}
+  .sobre-grid h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:14px 0 20px;max-width:16ch;}
+  .sobre-grid .mission{font-size:1.2rem;line-height:1.55;color:var(--text-muted);}
+  .pillars{display:flex;flex-direction:column;gap:18px;}
+  .pillar{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:18px;border:1px solid var(--surface-border);border-radius:16px;background:var(--surface);
+  }
+  .pillar .n{
+    font-family:'IBM Plex Mono',monospace;font-size:0.8rem;font-weight:600;
+    color:var(--c-flexo);border:1px solid rgba(237,47,89,0.4);border-radius:8px;
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .pillar p{font-size:0.92rem;color:var(--text);}
+  @media (max-width:860px){ .sobre-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Ecosystem diagram ---------- */
+  .eco-head{text-align:center;max-width:640px;margin:0 auto 64px;}
+  .eco-head h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:14px 0 16px;}
+  .eco-head p{color:var(--text-muted);font-size:1rem;line-height:1.6;}
+
+  .eco-flow{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    margin-bottom:56px;flex-wrap:wrap;
+  }
+  .eco-flow .node{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.05em;
+    padding:9px 16px;border-radius:100px;border:1px solid var(--surface-border);
+    white-space:nowrap;
+  }
+  .eco-flow .arrow{color:var(--text-muted);font-size:0.9rem;}
+
+  .company-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media (max-width:980px){ .company-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .company-grid{grid-template-columns:1fr;} }
+
+  .company-card{
+    border-radius:22px;padding:28px 24px;border:1px solid var(--surface-border);
+    background:var(--surface);
+    display:flex;flex-direction:column;gap:16px;
+    position:relative;overflow:hidden;
+    transition:border-color .25s, transform .25s;
+  }
+  .company-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--accent);
+  }
+  .company-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+  .company-card .role{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);
+  }
+  .company-card h3{font-size:1.3rem;margin-top:6px;}
+  .company-card .desc{font-size:0.86rem;line-height:1.55;color:var(--text-muted);flex-grow:1;}
+  .company-card .tag{
+    font-size:0.78rem;font-style:italic;color:var(--text);
+    border-top:1px solid var(--surface-border);padding-top:14px;
+  }
+  .company-card .logo-mark{
+    height:38px;padding:8px 12px;border-radius:10px;
+    background:color-mix(in srgb, var(--accent) 22%, #0a1730);
+    display:flex;align-items:center;justify-content:center;
+    align-self:flex-start;
+  }
+  .company-card .logo-mark img{height:100%;width:auto;display:block;}
+
+  .card-flexo{--accent:var(--c-flexo);}
+  .card-narrow{--accent:var(--c-narrow);}
+  .card-tizza{--accent:var(--c-tizza);}
+  .card-vp{--accent:var(--c-vp);}
+
+  .eco-closer{
+    text-align:center;margin-top:56px;padding-top:40px;border-top:1px solid var(--line);
+  }
+  .eco-closer .l1{font-size:1.15rem;font-weight:600;}
+  .eco-closer .l2{font-size:0.85rem;color:var(--text-muted);margin-top:6px;}
+
+  /* ---------- Timeline ---------- */
+  .timeline-wrap{position:relative;padding-left:28px;}
+  .timeline-wrap::before{
+    content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--c-flexo),var(--c-narrow),var(--c-tizza),var(--c-vp));
+  }
+  .t-item{position:relative;padding-bottom:36px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--c-flexo);
+  }
+  .t-item .yr{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--c-flexo);font-size:1.05rem;}
+  .t-item .desc{font-size:0.95rem;color:var(--text-muted);margin-top:4px;max-width:56ch;line-height:1.55;}
+  .t-item.current .yr{color:var(--c-vp);}
+  .t-item.current::before{border-color:var(--c-vp);}
+
+  /* ---------- Locations ---------- */
+  .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media (max-width:860px){ .loc-grid{grid-template-columns:1fr;} }
+  .loc-card{
+    border:1px solid var(--surface-border);background:var(--surface);border-radius:20px;padding:26px;
+  }
+  .loc-card .city{font-size:1.2rem;font-weight:700;}
+  .loc-card .state{color:var(--text-muted);font-family:'IBM Plex Mono',monospace;font-size:0.78rem;}
+  .loc-card .fn{margin-top:14px;font-size:0.88rem;color:var(--text-muted);line-height:1.55;}
+  .loc-card .since{
+    margin-top:16px;display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+    padding:5px 10px;border-radius:100px;border:1px solid var(--surface-border);color:var(--text-muted);
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media (max-width:980px){ .contact-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-card{
+    border:1px solid var(--surface-border);border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;gap:10px;transition:border-color .2s;
+  }
+  .contact-card:hover{border-color:var(--accent);}
+  .contact-card h4{font-size:1.05rem;}
+  .contact-card p{font-size:0.82rem;color:var(--text-muted);}
+  .contact-card .go{
+    margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:0.74rem;font-weight:600;
+    color:var(--accent);display:flex;align-items:center;gap:6px;
+  }
+
+  .gallery-hero{
+    border-radius:28px;overflow:hidden;margin-bottom:24px;border:1px solid var(--surface-border);
+    position:relative;
+  }
+  .gallery-hero img{width:100%;height:auto;display:block;}
+  .gallery-hero .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:28px 32px;
+    background:linear-gradient(transparent, rgba(5,11,22,0.92));
+  }
+  .gallery-hero .cap h3{font-size:1.3rem;}
+  .gallery-hero .cap p{color:var(--text-muted);font-size:0.85rem;margin-top:4px;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media (max-width:860px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+  .gallery-grid figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--surface-border);}
+  .gallery-grid img{width:100%;height:200px;object-fit:cover;display:block;}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-inner .companies{display:flex;gap:18px;flex-wrap:wrap;font-size:0.78rem;color:var(--text-muted);}
+  .footer-inner .copy{font-size:0.78rem;color:var(--text-muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="brand"><img src="assets/pmg-group-white.png" alt="PMG Group"></a>
+    <nav class="links">
+      <a href="#sobre">Sobre</a>
+      <a href="#empresas">Empresas</a>
+      <a href="#historia">História</a>
+      <a href="#localizacoes">Localizações</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">PMG GROUP · ECOSSISTEMA FLEXOGRÁFICO</p>
+      <h1 style="margin-top:14px;">Conectando <em>tecnologia</em>, produção e performance na flexografia.</h1>
+      <p class="lede">Um ecossistema especializado em tecnologia e engenharia para impressão flexográfica, formado por quatro empresas que atendem convertedores de embalagens em todo o Brasil.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">8</div><div class="lbl">anos de evolução contínua do ecossistema</div></div>
+        <div class="stat"><div class="num">30+</div><div class="lbl">anos de experiência técnica acumulada</div></div>
+        <div class="stat"><div class="num">4</div><div class="lbl">empresas que compõem o grupo</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl">estados com operação: SP, GO e SC</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="wrap sobre-grid">
+      <div>
+        <p class="eyebrow">SOBRE O GRUPO</p>
+        <h2>Ajudar convertedores a imprimir melhor, mais rápido e com menos desperdício.</h2>
+        <p class="mission">Essa é a razão de existir do PMG Group. Investimos de forma constante em tecnologia de ponta, mantemos padronização rigorosa de processos entre nossas empresas e oferecemos suporte técnico especializado para quem converte embalagens flexíveis, rótulos e etiquetas em todo o país.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><span class="n">01</span><p>Mais de 30 anos de experiência técnica acumulada entre as equipes do grupo.</p></div>
+        <div class="pillar"><span class="n">02</span><p>Investimento constante em tecnologia de ponta, da gravação de clichês ao software de gestão.</p></div>
+        <div class="pillar"><span class="n">03</span><p>Padronização rigorosa de processos entre plantas e empresas do ecossistema.</p></div>
+        <div class="pillar"><span class="n">04</span><p>Suporte técnico especializado, direto com quem desenvolve e opera cada solução.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block-tight">
+    <div class="wrap">
+      <p class="eyebrow">QUEM FAZ ACONTECER</p>
+      <h2 style="font-size:clamp(1.5rem,2.6vw,2rem);margin:14px 0 32px;max-width:26ch;">Um time técnico, nas plantas e nos treinamentos, todos os dias.</h2>
+      <div class="gallery-hero">
+        <img src="assets/photo-team.jpg" alt="Equipe PMG Group reunida em uma das plantas de produção">
+        <div class="cap">
+          <h3>Equipe PMG Group</h3>
+          <p>Times técnicos das quatro empresas, reunidos em treinamento nas plantas do grupo.</p>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        <figure><img src="assets/photo-treinamento.jpg" alt="Treinamento técnico sobre controle de anilox"></figure>
+        <figure><img src="assets/photo-planta.jpg" alt="Equipe técnica na mesa de montagem de clichês"></figure>
+        <figure><img src="assets/photo-visita.jpg" alt="Visita técnica guiada pela planta de produção"></figure>
+        <figure><img src="assets/photo-narrow-book.jpg" alt="Material institucional impresso da PMG Narrow"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="empresas" style="background:var(--bg-2);">
+    <div class="wrap">
+      <div class="eco-head">
+        <p class="eyebrow">O ECOSSISTEMA</p>
+        <h2>Quatro empresas, uma única cadeia de produção.</h2>
+        <p>Do software que planeja a produção ao filme que vira embalagem, cada empresa do PMG Group resolve uma etapa específica — para que o resultado final seja sempre previsível.</p>
+      </div>
+
+      <div class="eco-flow">
+        <span class="node mono" style="color:var(--c-tizza);border-color:var(--c-tizza);">Tizza · Motor Digital</span>
+        <span class="arrow">→</span>
+        <span class="node mono" style="color:var(--c-flexo);border-color:var(--c-flexo);">PMG Flexo · Escala</span>
+        <span class="arrow">→</span>
+        <span class="node mono" style="color:var(--c-narrow);border-color:var(--c-narrow);">PMG Narrow · Precisão</span>
+        <span class="arrow">→</span>
+        <span class="node mono" style="color:var(--c-vp);border-color:var(--c-vp);">VP Filmes · Base</span>
+      </div>
+
+      <div class="company-grid">
+        <div class="company-card card-tizza">
+          <span class="logo-mark"><img src="assets/tizza.png" alt="Tizza Tecnologia"></span>
+          <span class="role">Motor · Software</span>
+          <h3>Tizza Tecnologia</h3>
+          <p class="desc">Desenvolve o Sistema Kaiaki, plataforma 100% online que conecta clientes diretamente à produção — acompanhamento em tempo real, aprovação remota e cálculo antecipado de consumo de tinta.</p>
+          <p class="tag">"Mais controle, mais agilidade, mais eficiência."</p>
+        </div>
+        <div class="company-card card-flexo">
+          <span class="logo-mark"><img src="assets/pmg-flexo.png" alt="PMG Flexo"></span>
+          <span class="role">Escala · Banda Larga</span>
+          <h3>PMG Flexo</h3>
+          <p class="desc">Clicheria de alta performance para embalagens flexíveis de grandes tiragens. Matrizes fotopolímeras na plataforma HRX, compatível com as tecnologias Everest® e K2®, com provas certificadas GMG.</p>
+          <p class="tag">"O resultado na máquina começa na clicheria."</p>
+        </div>
+        <div class="company-card card-narrow">
+          <span class="logo-mark"><img src="assets/pmg-narrow.png" alt="PMG Narrow"></span>
+          <span class="role">Precisão · Banda Estreita</span>
+          <h3>PMG Narrow</h3>
+          <p class="desc">A clicheria da PMG Group dedicada exclusivamente ao mercado de rótulos e etiquetas — pré-impressão, gerenciamento de cores e gravação de clichês com agilidade e suporte técnico completo.</p>
+          <p class="tag">"Atendimento dedicado para quem vive o mercado de rótulos e etiquetas."</p>
+        </div>
+        <div class="company-card card-vp">
+          <span class="logo-mark"><img src="assets/vp-filmes-white.png" alt="VP Filmes"></span>
+          <span class="role">Base · Insumos</span>
+          <h3>VP Filmes</h3>
+          <p class="desc">Distribuidora técnica de filmes flexíveis BOPP e PEAD, sediada em Blumenau-SC, sem exigência de volume mínimo — a flexibilidade de escala que o convertedor precisa.</p>
+          <p class="tag">"Filmes que combinam desempenho, proteção e valor para sua embalagem."</p>
+        </div>
+      </div>
+
+      <div class="eco-closer">
+        <p class="l1">Mesma cor. Mesma embalagem. Toda tiragem.</p>
+        <p class="l2">Repetibilidade não é sorte. É processo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="historia">
+    <div class="wrap" style="max-width:820px;">
+      <p class="eyebrow">LINHA DO TEMPO</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.4rem);margin:14px 0 48px;">8 anos de evolução contínua.</h2>
+      <div class="timeline-wrap">
+        <div class="t-item"><div class="yr">2018</div><div class="desc">Fundação da unidade de Goiânia (GO), início da operação de gravação de clichês.</div></div>
+        <div class="t-item"><div class="yr">2019</div><div class="desc">Expansão da planta de Vinhedo (SP), no principal polo de conversão de embalagens do Brasil.</div></div>
+        <div class="t-item"><div class="yr">2020</div><div class="desc">Aquisição de gravadoras digitais Esko Pixel+, ampliando a capacidade de gravação de alta resolução.</div></div>
+        <div class="t-item"><div class="yr">2021</div><div class="desc">Expansão da atuação para atendimento em todo o território nacional.</div></div>
+        <div class="t-item"><div class="yr">2022</div><div class="desc">Reestruturação societária do grupo.</div></div>
+        <div class="t-item"><div class="yr">2024</div><div class="desc">Constituição da VP Filmes e inauguração da nova sede em Vinhedo (SP).</div></div>
+        <div class="t-item"><div class="yr">2025</div><div class="desc">Nova gravadora de alta definição, ampliando a capacidade produtiva das plantas.</div></div>
+        <div class="t-item current"><div class="yr">2026</div><div class="desc">Adoção da plataforma de chapas HRX — sucessora da geração anterior, descontinuada pelo mercado — e estruturação formal do Ecossistema PMG Group.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="localizacoes" style="background:var(--bg-2);">
+    <div class="wrap">
+      <p class="eyebrow">ONDE ESTAMOS</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.4rem);margin:14px 0 40px;">Operação em três estados, com plantas de gravação em regime 24 horas.</h2>
+      <div class="loc-grid">
+        <div class="loc-card">
+          <div class="city">Vinhedo</div>
+          <div class="state mono">SÃO PAULO</div>
+          <p class="fn">Sede do PMG Group e planta de gravação da PMG Flexo, no principal polo de conversão de embalagens do Brasil. Operação 24 horas.</p>
+          <span class="since mono">Desde 2019 · nova sede em 2024</span>
+        </div>
+        <div class="loc-card">
+          <div class="city">Goiânia</div>
+          <div class="state mono">GOIÁS</div>
+          <p class="fn">Planta de gravação da PMG Flexo com atendimento ágil para as regiões Centro-Oeste, Norte e Nordeste.</p>
+          <span class="since mono">Desde 2018</span>
+        </div>
+        <div class="loc-card">
+          <div class="city">Blumenau</div>
+          <div class="state mono">SANTA CATARINA</div>
+          <p class="fn">Operação da VP Filmes, distribuição de filmes flexíveis BOPP e PEAD para convertedores em todo o Brasil.</p>
+          <span class="since mono">Desde 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <p class="eyebrow">FALE COM CADA EMPRESA</p>
+      <h2 style="font-size:clamp(1.7rem,3vw,2.4rem);margin:14px 0 40px;max-width:20ch;">Cada empresa do grupo atende diretamente o seu segmento.</h2>
+      <div class="contact-grid">
+        <a class="contact-card card-flexo" style="--accent:var(--c-flexo);" href="https://wagnolias.github.io/PMG-Flexo-2/" target="_blank" rel="noopener">
+          <h4>PMG Flexo</h4>
+          <p>Clicheria de banda larga para embalagens flexíveis.</p>
+          <span class="go">Visitar site →</span>
+        </a>
+        <a class="contact-card card-narrow" style="--accent:var(--c-narrow);" href="https://www.pmgnarrow.com.br/" target="_blank" rel="noopener">
+          <h4>PMG Narrow</h4>
+          <p>Clicheria de banda estreita para rótulos e etiquetas.</p>
+          <span class="go">Visitar site →</span>
+        </a>
+        <a class="contact-card card-vp" style="--accent:var(--c-vp);" href="https://www.vpfilmes.com.br/" target="_blank" rel="noopener">
+          <h4>VP Filmes</h4>
+          <p>Distribuição de filmes BOPP e PEAD.</p>
+          <span class="go">Visitar site →</span>
+        </a>
+        <div class="contact-card card-tizza" style="--accent:var(--c-tizza);">
+          <h4>Tizza Tecnologia</h4>
+          <p>Desenvolvedora do Sistema Kaiaki, exclusivo para clientes PMG.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="companies">
+      <span>PMG Flexo</span>
+      <span>PMG Narrow</span>
+      <span>VP Filmes</span>
+      <span>Tizza Tecnologia</span>
+    </div>
+    <div class="copy">© 2026 PMG Group — Ecossistema Flexográfico</div>
+  </div>
+</footer>
+
+</body>
+</html>
