@@ -91,6 +91,18 @@
     z-index:0;
   }
   .hero .wrap{position:relative;z-index:1;}
+  #empresas{position:relative;overflow:hidden;}
+  #empresas .wrap{position:relative;z-index:1;}
+  .eco-watermark{
+    position:absolute;
+    top:50%;left:50%;
+    width:52%;min-width:520px;
+    transform:translate(-50%,-50%);
+    opacity:0.04;
+    pointer-events:none;
+    user-select:none;
+    z-index:0;
+  }
   .hero h1{
     font-size:clamp(2.4rem,5.5vw,4.4rem);
     line-height:1.05;
@@ -328,6 +340,7 @@
   </section>
 
   <section id="empresas" style="background:var(--bg-2);">
+    <img class="eco-watermark" src="assets/pmg-group-white.png" alt="" aria-hidden="true">
     <div class="wrap">
       <div class="eco-head">
         <p class="eyebrow">O ECOSSISTEMA</p>
