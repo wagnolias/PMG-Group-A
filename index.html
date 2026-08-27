@@ -91,14 +91,12 @@
     z-index:0;
   }
   .hero .wrap{position:relative;z-index:1;}
-  #empresas{position:relative;overflow:hidden;}
-  #empresas .wrap{position:relative;z-index:1;}
   .eco-watermark{
     position:absolute;
     top:50%;left:50%;
-    width:52%;min-width:520px;
+    width:46%;min-width:380px;
     transform:translate(-50%,-50%);
-    opacity:0.04;
+    opacity:0.05;
     pointer-events:none;
     user-select:none;
     z-index:0;
@@ -156,7 +154,7 @@
   }
   .eco-flow .arrow{color:var(--text-muted);font-size:0.9rem;}
 
-  .company-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .company-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;}
   @media (max-width:980px){ .company-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:560px){ .company-grid{grid-template-columns:1fr;} }
 
@@ -340,7 +338,6 @@
   </section>
 
   <section id="empresas" style="background:var(--bg-2);">
-    <img class="eco-watermark" src="assets/pmg-group-white.png" alt="" aria-hidden="true">
     <div class="wrap">
       <div class="eco-head">
         <p class="eyebrow">O ECOSSISTEMA</p>
@@ -359,6 +356,7 @@
       </div>
 
       <div class="company-grid">
+        <img class="eco-watermark" src="assets/pmg-group-white.png" alt="" aria-hidden="true">
         <div class="company-card card-tizza">
           <span class="logo-mark"><img src="assets/tizza.png" alt="Tizza Tecnologia"></span>
           <span class="role">Motor · Software</span>
