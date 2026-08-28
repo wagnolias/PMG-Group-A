@@ -62,13 +62,60 @@
   }
   .brand{display:flex;align-items:center;gap:10px;}
   .brand img{height:44px;width:auto;display:block;}
-  nav.links{display:flex;gap:28px;}
-  nav.links a{
+  nav.links{display:flex;align-items:center;gap:28px;}
+  nav.links > a, .nav-item > button{
     font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;
     color:var(--text-muted);transition:color .2s;
   }
-  nav.links a:hover{color:var(--text);}
-  @media (max-width:860px){ nav.links{display:none;} }
+  nav.links > a:hover, .nav-item:hover > button{color:var(--text);}
+  .nav-item{position:relative;}
+  .nav-item > button{
+    display:flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;
+    font-family:inherit;padding:0;
+  }
+  .nav-item > button svg{width:12px;height:12px;opacity:0.7;transition:transform .2s;}
+  .nav-item:hover > button svg{transform:rotate(180deg);}
+  .dropdown-menu{
+    position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+    min-width:210px;background:var(--bg-2);border:1px solid var(--surface-border);
+    border-radius:14px;padding:8px;box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    opacity:0;visibility:hidden;transform:translateX(-50%) translateY(-6px);
+    transition:opacity .18s, transform .18s, visibility .18s;
+  }
+  .nav-item:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+  .dropdown-menu a{
+    display:block;padding:9px 14px;border-radius:8px;font-size:0.78rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.04em;color:var(--text-muted);white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  .dropdown-menu a:hover{background:var(--surface);color:var(--text);}
+
+  .nav-mobile-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:6px;}
+  .nav-mobile-toggle svg{width:24px;height:24px;}
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .nav-mobile-toggle{display:block;}
+  }
+  #mobile-menu{
+    display:none;position:fixed;top:72px;left:0;right:0;bottom:0;z-index:49;
+    background:rgba(5,11,22,0.98);backdrop-filter:blur(14px);
+    padding:24px;overflow-y:auto;
+  }
+  #mobile-menu.open{display:block;}
+  #mobile-menu a{
+    display:block;padding:14px 4px;font-size:0.95rem;font-weight:600;color:var(--text);
+    border-bottom:1px solid var(--line);
+  }
+  #mobile-menu .mobile-sub{padding-left:16px;}
+  #mobile-menu .mobile-sub a{font-size:0.85rem;color:var(--text-muted);border-bottom:none;padding:10px 4px;}
+  #mobile-menu button.mobile-group-toggle{
+    width:100%;display:flex;justify-content:space-between;align-items:center;
+    background:none;border:none;font-family:inherit;cursor:pointer;
+    padding:14px 4px;font-size:0.95rem;font-weight:600;color:var(--text);
+    border-bottom:1px solid var(--line);
+  }
+  #mobile-menu button.mobile-group-toggle svg{width:16px;height:16px;transition:transform .2s;}
+  #mobile-menu button.mobile-group-toggle.open svg{transform:rotate(180deg);}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -80,27 +127,7 @@
     overflow:hidden;
     position:relative;
   }
-  .hero-watermark{
-    position:absolute;
-    top:50%;left:50%;
-    width:64%;min-width:640px;
-    transform:translate(-50%,-50%);
-    opacity:0.05;
-    pointer-events:none;
-    user-select:none;
-    z-index:0;
-  }
   .hero .wrap{position:relative;z-index:1;}
-  .eco-watermark{
-    position:absolute;
-    top:50%;left:50%;
-    width:46%;min-width:380px;
-    transform:translate(-50%,-50%);
-    opacity:0.05;
-    pointer-events:none;
-    user-select:none;
-    z-index:0;
-  }
   .hero h1{
     font-size:clamp(2.4rem,5.5vw,4.4rem);
     line-height:1.05;
@@ -277,17 +304,41 @@
     <nav class="links">
       <a href="#sobre">Sobre</a>
       <a href="#empresas">Empresas</a>
-      <a href="#historia">História</a>
-      <a href="#localizacoes">Localizações</a>
+      <div class="nav-item">
+        <button type="button" aria-haspopup="true">
+          Institucional
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#historia">História</a>
+          <a href="#localizacoes">Localizações</a>
+        </div>
+      </div>
       <a href="#contato">Contato</a>
     </nav>
+    <button class="nav-mobile-toggle" id="mobile-toggle-btn" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
   </div>
 </header>
+
+<div id="mobile-menu">
+  <a href="#sobre">Sobre</a>
+  <a href="#empresas">Empresas</a>
+  <button type="button" class="mobile-group-toggle" id="mobile-institucional-toggle">
+    Institucional
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="mobile-sub" id="mobile-institucional-sub" style="display:none;">
+    <a href="#historia">História</a>
+    <a href="#localizacoes">Localizações</a>
+  </div>
+  <a href="#contato">Contato</a>
+</div>
 
 <main id="top">
 
   <section class="hero">
-    <img class="hero-watermark" src="assets/pmg-group-white.png" alt="" aria-hidden="true">
     <div class="wrap">
       <p class="eyebrow">PMG GROUP · ECOSSISTEMA FLEXOGRÁFICO</p>
       <h1 style="margin-top:14px;">Conectando <em>tecnologia</em>, produção e performance na flexografia.</h1>
@@ -322,10 +373,10 @@
       <p class="eyebrow">QUEM FAZ ACONTECER</p>
       <h2 style="font-size:clamp(1.5rem,2.6vw,2rem);margin:14px 0 32px;max-width:26ch;">Um time técnico, nas plantas e nos treinamentos, todos os dias.</h2>
       <div class="gallery-hero">
-        <img src="assets/photo-team.jpg" alt="Equipe PMG Group reunida em uma das plantas de produção">
+        <img src="assets/photo-team.jpg" alt="Equipe técnica do PMG Group no estande da Expo & Label 2026">
         <div class="cap">
           <h3>Equipe PMG Group</h3>
-          <p>Times técnicos das quatro empresas, reunidos em treinamento nas plantas do grupo.</p>
+          <p>Quase toda a equipe técnica das quatro empresas, reunida no estande da Expo & Label 2026.</p>
         </div>
       </div>
       <div class="gallery-grid">
@@ -356,7 +407,6 @@
       </div>
 
       <div class="company-grid">
-        <img class="eco-watermark" src="assets/pmg-group-white.png" alt="" aria-hidden="true">
         <div class="company-card card-tizza">
           <span class="logo-mark"><img src="assets/tizza.png" alt="Tizza Tecnologia"></span>
           <span class="role">Motor · Software</span>
@@ -490,5 +540,24 @@
   </div>
 </footer>
 
+<script>
+  var mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  mobileToggleBtn.addEventListener('click', function () {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+    });
+  });
+  var institucionalToggle = document.getElementById('mobile-institucional-toggle');
+  var institucionalSub = document.getElementById('mobile-institucional-sub');
+  institucionalToggle.addEventListener('click', function () {
+    var isOpen = institucionalSub.style.display === 'block';
+    institucionalSub.style.display = isOpen ? 'none' : 'block';
+    institucionalToggle.classList.toggle('open', !isOpen);
+  });
+</script>
 </body>
 </html>
